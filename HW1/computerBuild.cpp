@@ -13,11 +13,11 @@ class Computer;
 class pcBuilder
 {
 public:
-    Computer *cmp;
+    Computer *computer;
     pcBuilder();
-    pcBuilder &buildRam();
-    pcBuilder &buildCPU();
-    pcBuilder &buildGPU();
+    pcBuilder &buildRam(float price, string brand, int size, int clockSpeed, int DDR_version);
+    pcBuilder &buildCPU(float price, string brand, int clockSpeed, string architecture);
+    pcBuilder &buildGPU(float price, string brand, int VMem, int Vclock);
     pcBuilder &buildStorage();
     pcBuilder &buildMotherBoard();
     pcBuilder &buildPSU();
@@ -36,7 +36,10 @@ public:
     MotherBoard *mb;
     PSU *psu;
     Peripheral *peripheral;
-    Computer() = default;
+    Computer()
+    {
+        cout << "Computer Class\n";
+    };
     pcBuilder *buildPc()
     {
         pcBuilder *build;
@@ -45,56 +48,109 @@ public:
     };
 };
 
-class Component {
-    protected: 
+class Component
+{
+protected:
     float price;
     string brand;
-    public:
-        Component(float price, string brand){
-            this->brand = brand;
-            this->price = price;
-        }
-        virtual float getPrice() = 0;
-        virtual string getBrand() = 0;
+    int id;
 
-
-};
-
-class Ram : public Component
-{
 public:
-    Ram(float price, string brand):Component(price,brand)
+    static int ct;
+    Component(float price, string brand)
     {
-        cout << "RAM:";
+        ct++;
+        this->id = ct;
+        this->brand = brand;
+        this->price = price;
     }
-
-    virtual float getPrice(){
+    float getPrice()
+    {
         return this->price;
     }
-    virtual string getBrand(){
+    string getBrand()
+    {
         return this->brand;
+    }
+    virtual void getDescription() = 0;
+};
+int Component::ct = 0;
+class Ram : public Component
+{
+    int size;
+    int clockSpeed;
+    int DDR_version;
+
+public:
+    Ram(float price, string brand, int size, int clockSpeed, int DDR_version) : Component(price, brand)
+    {
+        cout << "RAM:";
+        this->size = size;
+        this->clockSpeed = clockSpeed;
+        this->DDR_version = DDR_version;
+    }
+
+    void getDescription()
+    {
+        cout << "\nRam Description:\n";
+        cout << "\tId:" << this->id << endl;
+        cout << "\tBrand:" << this->brand << endl;
+        cout << "\tPrice:" << this->price << " TL" << endl;
+        cout << "\tSize:" << this->size << "GB" << endl;
     }
 };
 
-class GPU
+class GPU : public Component
 {
+    vector<GPU *> gpus;
+    int VMem;
+    int Vclock;
+
 public:
-    GPU()
+    GPU(float price, string brand, int VMem, int Vclock) : Component(price, brand)
     {
         cout << "GPU:";
+        this->VMem = VMem;
+        this->Vclock = Vclock;
+    }
+    void getDescription()
+    {
+        cout << "\nGPU Description:\n";
+        cout << "\tId:" << this->id << endl;
+        cout << "\tBrand:" << this->brand << endl;
+        cout << "\tPrice:" << this->price << " TL" << endl;
+        cout << "\tVideo Memory:" << this->VMem << "GB" << endl;
+        cout << "\tVideo Clock:" << this->Vclock << "Mhz" << endl;
     }
 };
-class CPU
+class CPU:public Component
 {
+    int clockSpeed;
+    string architecture;
+
 public:
-    CPU()
+    CPU(float price, string brand, int clockSpeed, string architecture): Component(price,brand)
     {
         cout << "CPU:";
+        this->clockSpeed = clockSpeed;
+        this->architecture = architecture;
+    }
+    void getDescription()
+    {
+        cout << "\nCPU Description:\n";
+        cout << "\tId:" << this->id << endl;
+        cout << "\tBrand:" << this->brand << endl;
+        cout << "\tPrice:" << this->price << " TL" << endl;
+        cout << "\tCpu Clock:" << this->clockSpeed << "Mhz" << endl;
+        cout << "\tCpu Architecture" << this->architecture  << endl;
     }
 };
 
 class Storage
 {
+    string type;
+    uint8_t size;
+
 public:
     Storage()
     {
@@ -103,6 +159,10 @@ public:
 };
 class MotherBoard
 {
+    string cpuPinType;
+    uint8_t RamSlotCount;
+    uint8_t PCI_ESpeed;
+
 public:
     MotherBoard()
     {
@@ -112,6 +172,7 @@ public:
 
 class PSU
 {
+    uint8_t poewer;
 
 public:
     PSU()
@@ -123,23 +184,24 @@ public:
 //* PC builder
 pcBuilder::pcBuilder()
 {
-    this->cmp = new Computer();
+    this->computer = new Computer();
     cout << "Build a pc:";
 };
 
-pcBuilder &pcBuilder::buildGPU()
+pcBuilder &pcBuilder::buildGPU(float price, string brand, int VMem, int Vclock)
 {
-    this->cmp->gpu = new GPU();
+    this->computer->gpu = new GPU(price, brand, VMem, Vclock);
     return *this;
 }
-pcBuilder &pcBuilder::buildCPU()
+pcBuilder &pcBuilder::buildCPU(float price, string brand, int clockSpeed, string architecture)
 {
-    this->cmp->cpu = new CPU();
+    this->computer->cpu = new CPU(price,brand,clockSpeed,architecture);
     return *this;
 }
 
-pcBuilder &pcBuilder::buildRam(){
-    this->cmp->ram= new Ram(0.2,"hynix");
+pcBuilder &pcBuilder::buildRam(float price, string brand, int size, int clockSpeed, int DDR_version)
+{
+    this->computer->ram = new Ram(price, brand, size, clockSpeed, DDR_version);
     return *this;
 }
 
@@ -152,24 +214,30 @@ class computerStore
 public:
     computerStore()
     {
-        __asm__("nop");
+        cout << "ComputerStore\n";
     }
 
     Computer *build()
     {
-        Computer *cmp;
-        cmp = new Computer();
-        cmp->buildPc()->buildCPU().buildGPU();
-        this->computers.push_back(cmp);
-        return cmp;
+        pcBuilder *builder;
+        builder = builder->computer->buildPc();
+        builder
+            ->buildRam(199, "hynix", 16, 4, 4)
+            .buildGPU(1230, "Nvdia", 2, 1333)
+            .buildCPU(2000,"Intel",20400,"x64");
+
+        builder->computer->ram->getDescription();
+        builder->computer->gpu->getDescription();
+        builder->computer->cpu->getDescription();
+        this->computers.push_back(builder->computer);
+        return builder->computer;
     }
 };
 
 int main()
 {
-    computerStore *cs;
-    Computer *pcb;
-    cs = new computerStore();
+    computerStore *cs = new computerStore();
+    Computer *pcb = new Computer();
 
     pcb = cs->build();
 }
