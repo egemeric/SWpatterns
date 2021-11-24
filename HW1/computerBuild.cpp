@@ -11,7 +11,6 @@ class PSU;
 class CPU;
 class Peripheral;
 class Computer;
-
 class pcBuilder
 {
 public:
@@ -300,34 +299,6 @@ public:
      * @return Computer*  Returns last added pc
      */
     Computer *build()
-    {r *build()
-    {
-        pcBuilder *builder;
-        builder = builder->computer->buildPc();
-        builder
-            ->buildRam(199, "hynix", 16, 4, 4)
-            .buildGPU(1230, "Nvdia", 2, 1333)
-            .buildGPU(2321, "AMD", 4, 1234)
-            .buildStorage(123,"Toshiba","HDD",500)
-            .buildStorage(500,"Sandisk","SSD",256)
-            .buildCPU(2321, "Intel", 20400, "x64");
-        this->computers.push_back(builder->computer);
-
-        builder = builder->computer->buildPc();
-        builder
-        pcBuilder *builder;
-        builder = builder->computer->buildPc();
-        builder
-            ->buildRam(199, "hynix", 16, 4, 4)
-            .buildGPU(1230, "Nvdia", 2, 1333)
-            .buildGPU(2321, "AMD", 4, 1234)
-            .buildStorage(123,"Toshiba","HDD",500)
-            .buildStorage(500,"Sandisk","SSD",256)
-            .buildCPU(2321, "Intel", 20400, "x64");
-        this->computers.push_back(builder->computer);
-
-        builder = builder->computer->buildPc();
-        builderr *build()
     {
         pcBuilder *builder;
         builder = builder->computer->buildPc();
