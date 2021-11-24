@@ -6,7 +6,8 @@
 using namespace std;
 
 /*
-    This homework includes base64 decode and encode methods, These two methods are directly taken from René Nyffenegger.
+  *  This homework includes base64 decode and encode methods, These two methods are directly taken from René Nyffenegger.
+  *   rene.nyffenegger@adp-gmbh.ch
 */
 
 class SpotifyPlayer
@@ -74,6 +75,7 @@ public:
   ~MusicPlayerApp()
   {
     delete this->musicPlayer;
+    this->musicPlayer = NULL;
   }
 
   string play(int musicId)
@@ -100,9 +102,32 @@ public:
   }
 };
 
+class Dummy
+{
+
+  SpotifyAdapter *spotifyAdapter;
+
+public:
+  Dummy()
+  {
+    this->spotifyAdapter = new SpotifyAdapter();
+  }
+  ~Dummy(){
+    delete this->spotifyAdapter;
+    this->spotifyAdapter = NULL;
+  }
+
+  void start()
+  {
+    cout << "Music id 1 is streaming: " << this->spotifyAdapter->play(1) << endl;
+    cout << "Music id 1 is streaming illegally: " << this->spotifyAdapter->illegalPlay(1) << endl;
+  }
+};
+
 int main()
 {
-  SpotifyAdapter *spotifiyAdapter = new SpotifyAdapter();
-  cout << "Music id 1 is streaming: " << spotifiyAdapter->play(1) << endl;
-  cout << "Music id 1 is streaming illegally: " << spotifiyAdapter->illegalPlay(1) << endl;
+  Dummy * app = new Dummy();
+  app->start();
+  delete app;
+  return 0;
 }
