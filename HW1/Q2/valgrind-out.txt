@@ -1,126 +1,187 @@
-==422308== Memcheck, a memory error detector
-==422308== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==422308== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==422308== Command: ./HW1/Q2/spotifyPlayer
-==422308== Parent PID: 406768
-==422308== 
---422308-- 
---422308-- Valgrind options:
---422308--    --leak-check=full
---422308--    --show-leak-kinds=all
---422308--    --track-origins=yes
---422308--    --verbose
---422308--    --log-file=valgrind-out.txt
---422308-- Contents of /proc/version:
---422308--   Linux version 5.14.16-201.fc34.x86_64 (mockbuild@bkernel02.iad2.fedoraproject.org) (gcc (GCC) 11.2.1 20210728 (Red Hat 11.2.1-1), GNU ld version 2.35.2-6.fc34) #1 SMP Wed Nov 3 13:57:29 UTC 2021
---422308-- 
---422308-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
---422308-- Page sizes: currently 4096, max supported 4096
---422308-- Valgrind library directory: /usr/libexec/valgrind
---422308-- Reading syms from /home/egemeric/SWpaternsHW1/SWpatterns/HW1/Q2/spotifyPlayer
---422308-- Reading syms from /usr/lib64/ld-2.33.so
---422308-- Warning: cross-CU LIMITATION: some inlined fn names
---422308-- might be shown as UnknownInlinedFun
---422308-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---422308--    object doesn't have a symbol table
---422308--    object doesn't have a dynamic symbol table
---422308-- Scheduler: using generic scheduler lock implementation.
---422308-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==422308== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-422308-by-egemeric-on-egemeric2
-==422308== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-422308-by-egemeric-on-egemeric2
-==422308== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-422308-by-egemeric-on-egemeric2
-==422308== 
-==422308== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==422308== don't want to do, unless you know exactly what you're doing,
-==422308== or are doing some strange experiment):
-==422308==   /usr/libexec/valgrind/../../bin/vgdb --pid=422308 ...command...
-==422308== 
-==422308== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==422308==   /path/to/gdb ./HW1/Q2/spotifyPlayer
-==422308== and then give GDB the following command
-==422308==   target remote | /usr/libexec/valgrind/../../bin/vgdb --pid=422308
-==422308== --pid is optional if only one valgrind process is running
-==422308== 
---422308-- REDIR: 0x4025130 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcfb2 (???)
---422308-- REDIR: 0x4024f00 (ld-linux-x86-64.so.2:index) redirected to 0x580bcfcc (???)
---422308-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---422308-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
-==422308== WARNING: new redirection conflicts with existing -- ignoring it
---422308--     old: 0x04025130 (strlen              ) R-> (0000.0) 0x580bcfb2 ???
---422308--     new: 0x04025130 (strlen              ) R-> (2007.0) 0x04846710 strlen
---422308-- REDIR: 0x4021910 (ld-linux-x86-64.so.2:strcmp) redirected to 0x48475b0 (strcmp)
---422308-- REDIR: 0x4025690 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x484b120 (mempcpy)
---422308-- Reading syms from /usr/lib64/libstdc++.so.6.0.29
---422308--    object doesn't have a symbol table
---422308-- Reading syms from /usr/lib64/libm-2.33.so
---422308--    object doesn't have a symbol table
---422308-- Reading syms from /usr/lib64/libgcc_s-11-20210728.so.1
---422308--    object doesn't have a symbol table
---422308-- Reading syms from /usr/lib64/libc-2.33.so
-==422308== WARNING: new redirection conflicts with existing -- ignoring it
---422308--     old: 0x04c77e30 (memalign            ) R-> (1011.0) 0x048459e4 memalign
---422308--     new: 0x04c77e30 (memalign            ) R-> (1017.0) 0x048459b7 aligned_alloc
-==422308== WARNING: new redirection conflicts with existing -- ignoring it
---422308--     old: 0x04c77e30 (memalign            ) R-> (1011.0) 0x048459e4 memalign
---422308--     new: 0x04c77e30 (memalign            ) R-> (1017.0) 0x0484598a aligned_alloc
-==422308== WARNING: new redirection conflicts with existing -- ignoring it
---422308--     old: 0x04c77e30 (memalign            ) R-> (1011.0) 0x048459e4 memalign
---422308--     new: 0x04c77e30 (memalign            ) R-> (1017.0) 0x048459b7 aligned_alloc
-==422308== WARNING: new redirection conflicts with existing -- ignoring it
---422308--     old: 0x04c77e30 (memalign            ) R-> (1011.0) 0x048459e4 memalign
---422308--     new: 0x04c77e30 (memalign            ) R-> (1017.0) 0x0484598a aligned_alloc
---422308-- REDIR: 0x4c7bee0 (libc.so.6:memmove) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
-==422308== Preferring higher priority redirection:
---422308--     old: 0x04d4e710 (__memcpy_avx_unalign) R-> (2018.0) 0x04848870 __memcpy_avx_unaligned_erms
---422308--     new: 0x04d4e710 (__memcpy_avx_unalign) R-> (2018.1) 0x0484a160 memmove
---422308-- REDIR: 0x4c7b3e0 (libc.so.6:strncpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7c220 (libc.so.6:strcasecmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7ae90 (libc.so.6:strcat) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7b440 (libc.so.6:rindex) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7d5d0 (libc.so.6:rawmemchr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c95680 (libc.so.6:wmemchr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c951c0 (libc.so.6:wcscmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7c040 (libc.so.6:mempcpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7be70 (libc.so.6:bcmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7b380 (libc.so.6:strncmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7af40 (libc.so.6:strcmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7bfb0 (libc.so.6:memset) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c95180 (libc.so.6:wcschr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7b2e0 (libc.so.6:strnlen) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7b020 (libc.so.6:strcspn) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7c270 (libc.so.6:strncasecmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7afc0 (libc.so.6:strcpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7c3c0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c968d0 (libc.so.6:wcsnlen) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c95200 (libc.so.6:wcscpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7b480 (libc.so.6:strpbrk) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7aef0 (libc.so.6:index) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7b2a0 (libc.so.6:strlen) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c81a80 (libc.so.6:memrchr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7c2c0 (libc.so.6:strcasecmp_l) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7be30 (libc.so.6:memchr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c952d0 (libc.so.6:wcslen) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7b5a0 (libc.so.6:strspn) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7c1c0 (libc.so.6:stpncpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7c160 (libc.so.6:stpcpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7d610 (libc.so.6:strchrnul) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4c7c310 (libc.so.6:strncasecmp_l) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
---422308-- REDIR: 0x4d4b530 (libc.so.6:__strrchr_avx2) redirected to 0x48460f0 (rindex)
---422308-- REDIR: 0x4c77100 (libc.so.6:malloc) redirected to 0x48407f9 (malloc)
---422308-- REDIR: 0x4d4b700 (libc.so.6:__strlen_avx2) redirected to 0x48465f0 (strlen)
---422308-- REDIR: 0x4d47cf0 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x48498f0 (bcmp)
---422308-- REDIR: 0x4d46bf0 (libc.so.6:__strcmp_avx2) redirected to 0x48474b0 (strcmp)
---422308-- REDIR: 0x491aa50 (libstdc++.so.6:operator new(unsigned long)) redirected to 0x4840f83 (operator new(unsigned long))
---422308-- REDIR: 0x4d4e710 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x484a160 (memmove)
---422308-- REDIR: 0x4918d00 (libstdc++.so.6:operator delete(void*, unsigned long)) redirected to 0x484386b (operator delete(void*, unsigned long))
---422308-- REDIR: 0x4918cf0 (libstdc++.so.6:operator delete(void*)) redirected to 0x48435f7 (operator delete(void*))
---422308-- REDIR: 0x4d4e6f0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x484ad20 (mempcpy)
---422308-- REDIR: 0x4c77760 (libc.so.6:free) redirected to 0x4843072 (free)
-==422308== 
-==422308== HEAP SUMMARY:
-==422308==     in use at exit: 0 bytes in 0 blocks
-==422308==   total heap usage: 23 allocs, 23 frees, 74,570 bytes allocated
-==422308== 
-==422308== All heap blocks were freed -- no leaks are possible
-==422308== 
-==422308== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==441924== Memcheck, a memory error detector
+==441924== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==441924== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
+==441924== Command: ./SWpatterns/HW1/Q2/spotifyPlayer
+==441924== Parent PID: 438408
+==441924== 
+--441924-- 
+--441924-- Valgrind options:
+--441924--    --leak-check=full
+--441924--    --show-leak-kinds=all
+--441924--    --track-origins=yes
+--441924--    --verbose
+--441924--    --log-file=valgrind-out.txt
+--441924-- Contents of /proc/version:
+--441924--   Linux version 5.14.16-201.fc34.x86_64 (mockbuild@bkernel02.iad2.fedoraproject.org) (gcc (GCC) 11.2.1 20210728 (Red Hat 11.2.1-1), GNU ld version 2.35.2-6.fc34) #1 SMP Wed Nov 3 13:57:29 UTC 2021
+--441924-- 
+--441924-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--441924-- Page sizes: currently 4096, max supported 4096
+--441924-- Valgrind library directory: /usr/libexec/valgrind
+--441924-- Reading syms from /home/egemeric/SWpaternsHW1/SWpatterns/HW1/Q2/spotifyPlayer
+--441924-- Reading syms from /usr/lib64/ld-2.33.so
+--441924-- Warning: cross-CU LIMITATION: some inlined fn names
+--441924-- might be shown as UnknownInlinedFun
+--441924-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+--441924--    object doesn't have a symbol table
+--441924--    object doesn't have a dynamic symbol table
+--441924-- Scheduler: using generic scheduler lock implementation.
+--441924-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==441924== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-441924-by-egemeric-on-egemeric2
+==441924== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-441924-by-egemeric-on-egemeric2
+==441924== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-441924-by-egemeric-on-egemeric2
+==441924== 
+==441924== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==441924== don't want to do, unless you know exactly what you're doing,
+==441924== or are doing some strange experiment):
+==441924==   /usr/libexec/valgrind/../../bin/vgdb --pid=441924 ...command...
+==441924== 
+==441924== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==441924==   /path/to/gdb ./SWpatterns/HW1/Q2/spotifyPlayer
+==441924== and then give GDB the following command
+==441924==   target remote | /usr/libexec/valgrind/../../bin/vgdb --pid=441924
+==441924== --pid is optional if only one valgrind process is running
+==441924== 
+--441924-- REDIR: 0x4025130 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcfb2 (???)
+--441924-- REDIR: 0x4024f00 (ld-linux-x86-64.so.2:index) redirected to 0x580bcfcc (???)
+--441924-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--441924-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+==441924== WARNING: new redirection conflicts with existing -- ignoring it
+--441924--     old: 0x04025130 (strlen              ) R-> (0000.0) 0x580bcfb2 ???
+--441924--     new: 0x04025130 (strlen              ) R-> (2007.0) 0x04846710 strlen
+--441924-- REDIR: 0x4021910 (ld-linux-x86-64.so.2:strcmp) redirected to 0x48475b0 (strcmp)
+--441924-- REDIR: 0x4025690 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x484b120 (mempcpy)
+--441924-- Reading syms from /usr/lib64/libstdc++.so.6.0.29
+--441924--    object doesn't have a symbol table
+--441924-- Reading syms from /usr/lib64/libm-2.33.so
+--441924--    object doesn't have a symbol table
+--441924-- Reading syms from /usr/lib64/libgcc_s-11-20210728.so.1
+--441924--    object doesn't have a symbol table
+--441924-- Reading syms from /usr/lib64/libc-2.33.so
+==441924== WARNING: new redirection conflicts with existing -- ignoring it
+--441924--     old: 0x04c77e30 (memalign            ) R-> (1011.0) 0x048459e4 memalign
+--441924--     new: 0x04c77e30 (memalign            ) R-> (1017.0) 0x048459b7 aligned_alloc
+==441924== WARNING: new redirection conflicts with existing -- ignoring it
+--441924--     old: 0x04c77e30 (memalign            ) R-> (1011.0) 0x048459e4 memalign
+--441924--     new: 0x04c77e30 (memalign            ) R-> (1017.0) 0x0484598a aligned_alloc
+==441924== WARNING: new redirection conflicts with existing -- ignoring it
+--441924--     old: 0x04c77e30 (memalign            ) R-> (1011.0) 0x048459e4 memalign
+--441924--     new: 0x04c77e30 (memalign            ) R-> (1017.0) 0x048459b7 aligned_alloc
+==441924== WARNING: new redirection conflicts with existing -- ignoring it
+--441924--     old: 0x04c77e30 (memalign            ) R-> (1011.0) 0x048459e4 memalign
+--441924--     new: 0x04c77e30 (memalign            ) R-> (1017.0) 0x0484598a aligned_alloc
+--441924-- REDIR: 0x4c7bee0 (libc.so.6:memmove) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+==441924== Preferring higher priority redirection:
+--441924--     old: 0x04d4e710 (__memcpy_avx_unalign) R-> (2018.0) 0x04848870 __memcpy_avx_unaligned_erms
+--441924--     new: 0x04d4e710 (__memcpy_avx_unalign) R-> (2018.1) 0x0484a160 memmove
+--441924-- REDIR: 0x4c7b3e0 (libc.so.6:strncpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7c220 (libc.so.6:strcasecmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7ae90 (libc.so.6:strcat) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7b440 (libc.so.6:rindex) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7d5d0 (libc.so.6:rawmemchr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c95680 (libc.so.6:wmemchr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c951c0 (libc.so.6:wcscmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7c040 (libc.so.6:mempcpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7be70 (libc.so.6:bcmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7b380 (libc.so.6:strncmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7af40 (libc.so.6:strcmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7bfb0 (libc.so.6:memset) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c95180 (libc.so.6:wcschr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7b2e0 (libc.so.6:strnlen) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7b020 (libc.so.6:strcspn) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7c270 (libc.so.6:strncasecmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7afc0 (libc.so.6:strcpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7c3c0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c968d0 (libc.so.6:wcsnlen) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c95200 (libc.so.6:wcscpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7b480 (libc.so.6:strpbrk) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7aef0 (libc.so.6:index) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7b2a0 (libc.so.6:strlen) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c81a80 (libc.so.6:memrchr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7c2c0 (libc.so.6:strcasecmp_l) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7be30 (libc.so.6:memchr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c952d0 (libc.so.6:wcslen) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7b5a0 (libc.so.6:strspn) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7c1c0 (libc.so.6:stpncpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7c160 (libc.so.6:stpcpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7d610 (libc.so.6:strchrnul) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4c7c310 (libc.so.6:strncasecmp_l) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--441924-- REDIR: 0x4d4b530 (libc.so.6:__strrchr_avx2) redirected to 0x48460f0 (rindex)
+--441924-- REDIR: 0x4c77100 (libc.so.6:malloc) redirected to 0x48407f9 (malloc)
+--441924-- REDIR: 0x4d4b700 (libc.so.6:__strlen_avx2) redirected to 0x48465f0 (strlen)
+--441924-- REDIR: 0x4d47cf0 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x48498f0 (bcmp)
+--441924-- REDIR: 0x4d46bf0 (libc.so.6:__strcmp_avx2) redirected to 0x48474b0 (strcmp)
+--441924-- REDIR: 0x491aa50 (libstdc++.so.6:operator new(unsigned long)) redirected to 0x4840f83 (operator new(unsigned long))
+--441924-- REDIR: 0x4d4e710 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x484a160 (memmove)
+--441924-- REDIR: 0x4918d00 (libstdc++.so.6:operator delete(void*, unsigned long)) redirected to 0x484386b (operator delete(void*, unsigned long))
+--441924-- REDIR: 0x4918cf0 (libstdc++.so.6:operator delete(void*)) redirected to 0x48435f7 (operator delete(void*))
+--441924-- REDIR: 0x4c77760 (libc.so.6:free) redirected to 0x4843072 (free)
+==441924== 
+==441924== HEAP SUMMARY:
+==441924==     in use at exit: 251 bytes in 5 blocks
+==441924==   total heap usage: 21 allocs, 16 frees, 74,531 bytes allocated
+==441924== 
+==441924== Searching for pointers to 5 not-freed blocks
+==441924== Checked 137,496 bytes
+==441924== 
+==441924== 33 bytes in 1 blocks are indirectly lost in loss record 1 of 5
+==441924==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==441924==    by 0x49B2F54: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::reserve(unsigned long) (in /usr/lib64/libstdc++.so.6.0.29)
+==441924==    by 0x4026DA: base64_encode[abi:cxx11](unsigned char const*, unsigned long, bool) (base64.cpp:129)
+==441924==    by 0x403957: SpotifyPlayer::addMusic() (spotifyPlayer.cpp:25)
+==441924==    by 0x403B4E: SpotifyPlayer::SpotifyPlayer() (spotifyPlayer.cpp:35)
+==441924==    by 0x403C49: SpotifyAdapter::SpotifyAdapter() (spotifyPlayer.cpp:64)
+==441924==    by 0x403E31: MusicPlayerApp::play[abi:cxx11](int) (spotifyPlayer.cpp:100)
+==441924==    by 0x40401D: Dummy::start() (spotifyPlayer.cpp:127)
+==441924==    by 0x402BE5: main (spotifyPlayer.cpp:134)
+==441924== 
+==441924== 33 bytes in 1 blocks are indirectly lost in loss record 2 of 5
+==441924==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==441924==    by 0x49B2F54: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::reserve(unsigned long) (in /usr/lib64/libstdc++.so.6.0.29)
+==441924==    by 0x4026DA: base64_encode[abi:cxx11](unsigned char const*, unsigned long, bool) (base64.cpp:129)
+==441924==    by 0x4039C5: SpotifyPlayer::addMusic() (spotifyPlayer.cpp:27)
+==441924==    by 0x403B4E: SpotifyPlayer::SpotifyPlayer() (spotifyPlayer.cpp:35)
+==441924==    by 0x403C49: SpotifyAdapter::SpotifyAdapter() (spotifyPlayer.cpp:64)
+==441924==    by 0x403E31: MusicPlayerApp::play[abi:cxx11](int) (spotifyPlayer.cpp:100)
+==441924==    by 0x40401D: Dummy::start() (spotifyPlayer.cpp:127)
+==441924==    by 0x402BE5: main (spotifyPlayer.cpp:134)
+==441924== 
+==441924== 33 bytes in 1 blocks are indirectly lost in loss record 3 of 5
+==441924==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==441924==    by 0x49B2F54: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::reserve(unsigned long) (in /usr/lib64/libstdc++.so.6.0.29)
+==441924==    by 0x4026DA: base64_encode[abi:cxx11](unsigned char const*, unsigned long, bool) (base64.cpp:129)
+==441924==    by 0x403A33: SpotifyPlayer::addMusic() (spotifyPlayer.cpp:29)
+==441924==    by 0x403B4E: SpotifyPlayer::SpotifyPlayer() (spotifyPlayer.cpp:35)
+==441924==    by 0x403C49: SpotifyAdapter::SpotifyAdapter() (spotifyPlayer.cpp:64)
+==441924==    by 0x403E31: MusicPlayerApp::play[abi:cxx11](int) (spotifyPlayer.cpp:100)
+==441924==    by 0x40401D: Dummy::start() (spotifyPlayer.cpp:127)
+==441924==    by 0x402BE5: main (spotifyPlayer.cpp:134)
+==441924== 
+==441924== 128 bytes in 1 blocks are indirectly lost in loss record 4 of 5
+==441924==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==441924==    by 0x4053F1: __gnu_cxx::new_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::allocate(unsigned long, void const*) (new_allocator.h:127)
+==441924==    by 0x405277: std::allocator_traits<std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::allocate(std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >&, unsigned long) (alloc_traits.h:460)
+==441924==    by 0x404F4F: std::_Vector_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_allocate(unsigned long) (stl_vector.h:346)
+==441924==    by 0x404A87: void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (vector.tcc:440)
+==441924==    by 0x40470B: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >& std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::emplace_back<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (vector.tcc:121)
+==441924==    by 0x4042F1: std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::push_back(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (stl_vector.h:1204)
+==441924==    by 0x403A42: SpotifyPlayer::addMusic() (spotifyPlayer.cpp:29)
+==441924==    by 0x403B4E: SpotifyPlayer::SpotifyPlayer() (spotifyPlayer.cpp:35)
+==441924==    by 0x403C49: SpotifyAdapter::SpotifyAdapter() (spotifyPlayer.cpp:64)
+==441924==    by 0x403E31: MusicPlayerApp::play[abi:cxx11](int) (spotifyPlayer.cpp:100)
+==441924==    by 0x40401D: Dummy::start() (spotifyPlayer.cpp:127)
+==441924== 
+==441924== 251 (24 direct, 227 indirect) bytes in 1 blocks are definitely lost in loss record 5 of 5
+==441924==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==441924==    by 0x403C3E: SpotifyAdapter::SpotifyAdapter() (spotifyPlayer.cpp:64)
+==441924==    by 0x403E31: MusicPlayerApp::play[abi:cxx11](int) (spotifyPlayer.cpp:100)
+==441924==    by 0x40401D: Dummy::start() (spotifyPlayer.cpp:127)
+==441924==    by 0x402BE5: main (spotifyPlayer.cpp:134)
+==441924== 
+==441924== LEAK SUMMARY:
+==441924==    definitely lost: 24 bytes in 1 blocks
+==441924==    indirectly lost: 227 bytes in 4 blocks
+==441924==      possibly lost: 0 bytes in 0 blocks
+==441924==    still reachable: 0 bytes in 0 blocks
+==441924==         suppressed: 0 bytes in 0 blocks
+==441924== 
+==441924== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

@@ -21,11 +21,11 @@ class SpotifyPlayer
   void addMusic()
   {
     std::string orig =
-        "Music Stream 1";
+        "Music Stream 1 content";
     this->musics.push_back(base64_encode(reinterpret_cast<const unsigned char *>(orig.c_str()), orig.length()));
-    orig = "Music Stream 2";
+    orig = "Music Stream 2 content";
     this->musics.push_back(base64_encode(reinterpret_cast<const unsigned char *>(orig.c_str()), orig.length()));
-    orig = "Music Stream 3";
+    orig = "Music Stream 3 content";
     this->musics.push_back(base64_encode(reinterpret_cast<const unsigned char *>(orig.c_str()), orig.length()));
   }
 
@@ -42,22 +42,40 @@ public:
 
 class MySuperMusicStreamer
 {
-  SpotifyPlayer *spotifyPlayer;
 
 public:
   MySuperMusicStreamer()
   {
-    this->spotifyPlayer = new SpotifyPlayer();
   }
   ~MySuperMusicStreamer()
   {
-    delete this->spotifyPlayer;
-    this->spotifyPlayer = NULL;
   }
 
-  string play(int spotifyMusicId)
+  virtual string play(int spotifyMusicId){};
+  virtual string illegalPlay(int spotifyMusicId){};
+};
+class SpotifyAdapter : public MySuperMusicStreamer
+{
+  SpotifyPlayer *spotifyPlayer;
+
+public:
+  SpotifyAdapter() : MySuperMusicStreamer()
   {
-    return this->spotifyPlayer->stream(spotifyMusicId);
+    this->spotifyPlayer = new SpotifyPlayer();
+  }
+  ~SpotifyAdapter()
+  {
+    delete this->spotifyPlayer;
+  }
+
+  virtual string play(int musicId)
+  {
+    return this->spotifyPlayer->stream(musicId) + " <via spotifyAdapter>\n";
+  }
+
+  virtual string illegalPlay(int musicId)
+  {
+    return (base64_decode(this->spotifyPlayer->stream(musicId)) + " <ILLEGAL STREAM>\n");
   }
 };
 
@@ -75,58 +93,44 @@ public:
   ~MusicPlayerApp()
   {
     delete this->musicPlayer;
-    this->musicPlayer = NULL;
   }
 
   string play(int musicId)
   {
-    return this->musicPlayer->play(musicId);
-  }
-};
-
-class SpotifyAdapter : public MusicPlayerApp, private SpotifyPlayer
-{
-
-public:
-  SpotifyAdapter() : MusicPlayerApp(new MySuperMusicStreamer())
-  {
-  }
-
-  string play(int musicId)
-  {
-    return this->musicPlayer->play(musicId) + " <via spotifyAdapter>";
-  }
-  string illegalPlay(int musicId)
-  {
-    return base64_decode(this->musicPlayer->play(musicId)) + " <illegal>";
+    this->musicPlayer = new SpotifyAdapter();
+    return this->musicPlayer->play(musicId) + "\n" + this->musicPlayer->illegalPlay(musicId);
+    delete this->musicPlayer;
+    
   }
 };
 
 class Dummy
 {
 
-  SpotifyAdapter *spotifyAdapter;
+  MusicPlayerApp *musicApp;
+  MySuperMusicStreamer *tmp;
 
 public:
   Dummy()
   {
-    this->spotifyAdapter = new SpotifyAdapter();
+    this->tmp = new MySuperMusicStreamer();
+    this->musicApp = new MusicPlayerApp(this->tmp);
   }
-  ~Dummy(){
-    delete this->spotifyAdapter;
-    this->spotifyAdapter = NULL;
+  ~Dummy()
+  {
+    delete this->musicApp;
+    delete this->tmp;
   }
 
   void start()
   {
-    cout << "Music id 1 is streaming: " << this->spotifyAdapter->play(1) << endl;
-    cout << "Music id 1 is streaming illegally: " << this->spotifyAdapter->illegalPlay(1) << endl;
+    cout << this->musicApp->play(1); //base64 stream  and decoded stream(illegal)
   }
 };
 
 int main()
 {
-  Dummy * app = new Dummy();
+  Dummy *app = new Dummy();
   app->start();
   delete app;
   return 0;
