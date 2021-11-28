@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <vector>
 #include <time.h>  //cross platform
-#include <iomanip> // std::setw
+
 #define LINELENGTH 60
 
 using namespace std;
