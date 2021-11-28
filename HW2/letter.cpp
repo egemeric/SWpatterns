@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <time.h>  //cross platform
+#include <time.h> //cross platform
 
 #define LINELENGTH 60
 
@@ -30,7 +30,7 @@ const std::string currentDateTime()
     char buf[80];
     tstruct = *localtime(&now);
     // http://en.cppreference.com/w/cpp/chrono/c/strftime
-    strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+    strftime(buf, sizeof(buf), " %d-%m-%Y %X%Z", &tstruct);
 
     return buf;
 }
