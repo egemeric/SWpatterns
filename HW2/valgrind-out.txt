@@ -1,0 +1,186 @@
+==85750== Memcheck, a memory error detector
+==85750== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==85750== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
+==85750== Command: ./HW2/letter
+==85750== Parent PID: 68679
+==85750== 
+--85750-- 
+--85750-- Valgrind options:
+--85750--    --leak-check=full
+--85750--    --show-leak-kinds=all
+--85750--    --track-origins=yes
+--85750--    --verbose
+--85750--    --log-file=valgrind-out.txt
+--85750-- Contents of /proc/version:
+--85750--   Linux version 5.15.4-101.fc34.x86_64 (mockbuild@bkernel02.iad2.fedoraproject.org) (gcc (GCC) 11.2.1 20210728 (Red Hat 11.2.1-1), GNU ld version 2.35.2-6.fc34) #1 SMP Tue Nov 23 18:58:50 UTC 2021
+--85750-- 
+--85750-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--85750-- Page sizes: currently 4096, max supported 4096
+--85750-- Valgrind library directory: /usr/libexec/valgrind
+--85750-- Reading syms from /home/egemeric/SWpaternsHW1/SWpatterns/HW2/letter
+--85750-- Reading syms from /usr/lib64/ld-2.33.so
+--85750-- Warning: cross-CU LIMITATION: some inlined fn names
+--85750-- might be shown as UnknownInlinedFun
+--85750-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+--85750--    object doesn't have a symbol table
+--85750--    object doesn't have a dynamic symbol table
+--85750-- Scheduler: using generic scheduler lock implementation.
+--85750-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==85750== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-85750-by-egemeric-on-egemeric2
+==85750== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-85750-by-egemeric-on-egemeric2
+==85750== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-85750-by-egemeric-on-egemeric2
+==85750== 
+==85750== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==85750== don't want to do, unless you know exactly what you're doing,
+==85750== or are doing some strange experiment):
+==85750==   /usr/libexec/valgrind/../../bin/vgdb --pid=85750 ...command...
+==85750== 
+==85750== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==85750==   /path/to/gdb ./HW2/letter
+==85750== and then give GDB the following command
+==85750==   target remote | /usr/libexec/valgrind/../../bin/vgdb --pid=85750
+==85750== --pid is optional if only one valgrind process is running
+==85750== 
+--85750-- REDIR: 0x4025130 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcfb2 (???)
+--85750-- REDIR: 0x4024f00 (ld-linux-x86-64.so.2:index) redirected to 0x580bcfcc (???)
+--85750-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--85750-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+==85750== WARNING: new redirection conflicts with existing -- ignoring it
+--85750--     old: 0x04025130 (strlen              ) R-> (0000.0) 0x580bcfb2 ???
+--85750--     new: 0x04025130 (strlen              ) R-> (2007.0) 0x04846710 strlen
+--85750-- REDIR: 0x4021910 (ld-linux-x86-64.so.2:strcmp) redirected to 0x48475b0 (strcmp)
+--85750-- REDIR: 0x4025690 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x484b120 (mempcpy)
+--85750-- Reading syms from /usr/lib64/libstdc++.so.6.0.29
+--85750--    object doesn't have a symbol table
+--85750-- Reading syms from /usr/lib64/libm-2.33.so
+--85750--    object doesn't have a symbol table
+--85750-- Reading syms from /usr/lib64/libgcc_s-11-20210728.so.1
+--85750--    object doesn't have a symbol table
+--85750-- Reading syms from /usr/lib64/libc-2.33.so
+==85750== WARNING: new redirection conflicts with existing -- ignoring it
+--85750--     old: 0x04c78e30 (memalign            ) R-> (1011.0) 0x048459e4 memalign
+--85750--     new: 0x04c78e30 (memalign            ) R-> (1017.0) 0x048459b7 aligned_alloc
+==85750== WARNING: new redirection conflicts with existing -- ignoring it
+--85750--     old: 0x04c78e30 (memalign            ) R-> (1011.0) 0x048459e4 memalign
+--85750--     new: 0x04c78e30 (memalign            ) R-> (1017.0) 0x0484598a aligned_alloc
+==85750== WARNING: new redirection conflicts with existing -- ignoring it
+--85750--     old: 0x04c78e30 (memalign            ) R-> (1011.0) 0x048459e4 memalign
+--85750--     new: 0x04c78e30 (memalign            ) R-> (1017.0) 0x048459b7 aligned_alloc
+==85750== WARNING: new redirection conflicts with existing -- ignoring it
+--85750--     old: 0x04c78e30 (memalign            ) R-> (1011.0) 0x048459e4 memalign
+--85750--     new: 0x04c78e30 (memalign            ) R-> (1017.0) 0x0484598a aligned_alloc
+--85750-- REDIR: 0x4c7cee0 (libc.so.6:memmove) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+==85750== Preferring higher priority redirection:
+--85750--     old: 0x04d4f710 (__memcpy_avx_unalign) R-> (2018.0) 0x04848870 __memcpy_avx_unaligned_erms
+--85750--     new: 0x04d4f710 (__memcpy_avx_unalign) R-> (2018.1) 0x0484a160 memmove
+--85750-- REDIR: 0x4c7c3e0 (libc.so.6:strncpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7d220 (libc.so.6:strcasecmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7be90 (libc.so.6:strcat) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7c440 (libc.so.6:rindex) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7e5d0 (libc.so.6:rawmemchr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c96680 (libc.so.6:wmemchr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c961c0 (libc.so.6:wcscmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7d040 (libc.so.6:mempcpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7ce70 (libc.so.6:bcmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7c380 (libc.so.6:strncmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7bf40 (libc.so.6:strcmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7cfb0 (libc.so.6:memset) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c96180 (libc.so.6:wcschr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7c2e0 (libc.so.6:strnlen) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7c020 (libc.so.6:strcspn) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7d270 (libc.so.6:strncasecmp) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7bfc0 (libc.so.6:strcpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7d3c0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c978d0 (libc.so.6:wcsnlen) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c96200 (libc.so.6:wcscpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7c480 (libc.so.6:strpbrk) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7bef0 (libc.so.6:index) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7c2a0 (libc.so.6:strlen) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c82a80 (libc.so.6:memrchr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7d2c0 (libc.so.6:strcasecmp_l) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7ce30 (libc.so.6:memchr) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c962d0 (libc.so.6:wcslen) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7c5a0 (libc.so.6:strspn) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7d1c0 (libc.so.6:stpncpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7d160 (libc.so.6:stpcpy) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7e610 (libc.so.6:strchrnul) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4c7d310 (libc.so.6:strncasecmp_l) redirected to 0x48351ea (_vgnU_ifunc_wrapper)
+--85750-- REDIR: 0x4d4c530 (libc.so.6:__strrchr_avx2) redirected to 0x48460f0 (rindex)
+--85750-- REDIR: 0x4c78100 (libc.so.6:malloc) redirected to 0x48407f9 (malloc)
+--85750-- REDIR: 0x4d4c700 (libc.so.6:__strlen_avx2) redirected to 0x48465f0 (strlen)
+--85750-- REDIR: 0x4d48cf0 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x48498f0 (bcmp)
+--85750-- REDIR: 0x4d47bf0 (libc.so.6:__strcmp_avx2) redirected to 0x48474b0 (strcmp)
+--85750-- REDIR: 0x491ba50 (libstdc++.so.6:operator new(unsigned long)) redirected to 0x4840f83 (operator new(unsigned long))
+--85750-- REDIR: 0x4d4f710 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x484a160 (memmove)
+--85750-- REDIR: 0x4919cf0 (libstdc++.so.6:operator delete(void*)) redirected to 0x48435f7 (operator delete(void*))
+--85750-- REDIR: 0x4c78760 (libc.so.6:free) redirected to 0x4843072 (free)
+--85750-- REDIR: 0x4c7ca50 (libc.so.6:__GI_strstr) redirected to 0x484b3c0 (__strstr_sse2)
+--85750-- REDIR: 0x4919d00 (libstdc++.so.6:operator delete(void*, unsigned long)) redirected to 0x484386b (operator delete(void*, unsigned long))
+--85750-- REDIR: 0x4d4fba0 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x484a050 (memset)
+--85750-- REDIR: 0x4d4f6f0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x484ad20 (mempcpy)
+==85750== 
+==85750== HEAP SUMMARY:
+==85750==     in use at exit: 477 bytes in 7 blocks
+==85750==   total heap usage: 44 allocs, 37 frees, 91,653 bytes allocated
+==85750== 
+==85750== Searching for pointers to 7 not-freed blocks
+==85750== Checked 137,576 bytes
+==85750== 
+==85750== 8 bytes in 1 blocks are indirectly lost in loss record 1 of 7
+==85750==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==85750==    by 0x404B33: __gnu_cxx::new_allocator<LetterBody*>::allocate(unsigned long, void const*) (new_allocator.h:127)
+==85750==    by 0x40497F: std::allocator_traits<std::allocator<LetterBody*> >::allocate(std::allocator<LetterBody*>&, unsigned long) (alloc_traits.h:460)
+==85750==    by 0x40469D: std::_Vector_base<LetterBody*, std::allocator<LetterBody*> >::_M_allocate(unsigned long) (stl_vector.h:346)
+==85750==    by 0x404035: void std::vector<LetterBody*, std::allocator<LetterBody*> >::_M_realloc_insert<LetterBody* const&>(__gnu_cxx::__normal_iterator<LetterBody**, std::vector<LetterBody*, std::allocator<LetterBody*> > >, LetterBody* const&) (vector.tcc:440)
+==85750==    by 0x4039A3: std::vector<LetterBody*, std::allocator<LetterBody*> >::push_back(LetterBody* const&) (stl_vector.h:1198)
+==85750==    by 0x402965: Letter::addComponent(LetterBody*) (letter.cpp:112)
+==85750==    by 0x403202: main (letter.cpp:181)
+==85750== 
+==85750== 31 bytes in 1 blocks are indirectly lost in loss record 2 of 7
+==85750==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==85750==    by 0x49B39A1: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib64/libstdc++.so.6.0.29)
+==85750==    by 0x49B3CDD: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib64/libstdc++.so.6.0.29)
+==85750==    by 0x402665: Letter::Letter() (letter.cpp:92)
+==85750==    by 0x402BE7: LetterBody::LetterBody() (letter.cpp:131)
+==85750==    by 0x40308D: main (letter.cpp:176)
+==85750== 
+==85750== 31 bytes in 1 blocks are indirectly lost in loss record 3 of 7
+==85750==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==85750==    by 0x49B39A1: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib64/libstdc++.so.6.0.29)
+==85750==    by 0x49B3CDD: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib64/libstdc++.so.6.0.29)
+==85750==    by 0x402785: Letter::Letter(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (letter.cpp:96)
+==85750==    by 0x403193: main (letter.cpp:180)
+==85750== 
+==85750== 31 bytes in 1 blocks are indirectly lost in loss record 4 of 7
+==85750==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==85750==    by 0x49B39A1: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib64/libstdc++.so.6.0.29)
+==85750==    by 0x49B3CDD: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib64/libstdc++.so.6.0.29)
+==85750==    by 0x4027BF: Letter::Letter(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (letter.cpp:98)
+==85750==    by 0x403193: main (letter.cpp:180)
+==85750== 
+==85750== 32 bytes in 1 blocks are indirectly lost in loss record 5 of 7
+==85750==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==85750==    by 0x404C5B: __gnu_cxx::new_allocator<Paragraph*>::allocate(unsigned long, void const*) (new_allocator.h:127)
+==85750==    by 0x404A3D: std::allocator_traits<std::allocator<Paragraph*> >::allocate(std::allocator<Paragraph*>&, unsigned long) (alloc_traits.h:460)
+==85750==    by 0x4048B9: std::_Vector_base<Paragraph*, std::allocator<Paragraph*> >::_M_allocate(unsigned long) (stl_vector.h:346)
+==85750==    by 0x40434F: void std::vector<Paragraph*, std::allocator<Paragraph*> >::_M_realloc_insert<Paragraph* const&>(__gnu_cxx::__normal_iterator<Paragraph**, std::vector<Paragraph*, std::allocator<Paragraph*> > >, Paragraph* const&) (vector.tcc:440)
+==85750==    by 0x403C39: std::vector<Paragraph*, std::allocator<Paragraph*> >::push_back(Paragraph* const&) (stl_vector.h:1198)
+==85750==    by 0x402CEB: LetterBody::addComponent(Paragraph*) (letter.cpp:146)
+==85750==    by 0x4030F4: main (letter.cpp:179)
+==85750== 
+==85750== 184 bytes in 1 blocks are indirectly lost in loss record 6 of 7
+==85750==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==85750==    by 0x403082: main (letter.cpp:176)
+==85750== 
+==85750== 477 (160 direct, 317 indirect) bytes in 1 blocks are definitely lost in loss record 7 of 7
+==85750==    at 0x4840FF5: operator new(unsigned long) (vg_replace_malloc.c:422)
+==85750==    by 0x40317F: main (letter.cpp:180)
+==85750== 
+==85750== LEAK SUMMARY:
+==85750==    definitely lost: 160 bytes in 1 blocks
+==85750==    indirectly lost: 317 bytes in 6 blocks
+==85750==      possibly lost: 0 bytes in 0 blocks
+==85750==    still reachable: 0 bytes in 0 blocks
+==85750==         suppressed: 0 bytes in 0 blocks
+==85750== 
+==85750== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

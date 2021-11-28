@@ -16,6 +16,9 @@ public:
     {
         this->paragraph = paragraph;
     }
+    ~Paragraph()
+    {
+    }
 
     string getContent()
     {
@@ -97,6 +100,11 @@ Letter::Letter(string header, string author, string user)
 }
 Letter::~Letter()
 {
+    for (int i = 0; i < this->letterbody.size(); i++)
+    {
+        delete this->letterbody[i];
+    }
+    this->letterbody.clear();
 }
 
 void Letter::addComponent(LetterBody *letterBody)
@@ -125,6 +133,13 @@ LetterBody::LetterBody() : Letter()
 }
 LetterBody::~LetterBody()
 {
+
+    for (int i = 0; i < this->paragraphs.size(); i++)
+    {
+        delete this->paragraphs[i];
+    }
+    this->paragraphs.clear();
+
 }
 void LetterBody::addComponent(Paragraph *paragraph)
 {
@@ -155,14 +170,15 @@ int main()
     string paragraph1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque varius quam vel purus tristique, sit amet sodales nulla pulvinar. Morbi tincidunt erat elit, in bibendum est sodales vitae. Ut varius massa nec dolor sodales, in interdum mauris luctus. Phasellus mollis, risus iaculis congue posuere, nunc diam posuere quam, vitae pellentesque ex nunc in eros. Aenean eleifend maximus sem, a semper lacus tempus at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin molestie eros eu justo iaculis consequat. Maecenas gravida aliquam nunc vel feugiat. Vivamus a nisl eros. Suspendisse turpis augue, mollis sed augue nec, ullamcorper cursus ipsum. Donec arcu justo, varius quis dolor at, eleifend pretium massa. Fusce ullamcorper cursus felis id ultricies. Donec ut aliquam mauris. Suspendisse potenti.";
     string paragraph2 = "Curabitur eu laoreet ex. Aenean ullamcorper nulla sed malesuada sollicitudin. Duis non nulla elementum justo pellentesque placerat. In varius odio eget est viverra tempus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris sit amet dui nunc. Sed varius ipsum felis, sit amet rhoncus mauris dapibus vitae. Aenean non ex vitae lacus cursus pellentesque. Nullam posuere odio eget laoreet rutrum. Donec tempus tempus vehicula. Proin eget placerat turpis. Curabitur ac massa felis. Mauris vitae lorem ante. Ut nisi nunc, feugiat eu vehicula eget, dapibus semper ipsum. Aenean est sapien, luctus sit amet risus ut, ullamcorper varius neque.";
     string paragraph3 = "Mauris eu mauris mollis risus sagittis tempus ut in dui. In ornare convallis velit, ac sagittis massa. Integer vulputate a magna non elementum. Etiam at tincidunt orci. Sed efficitur velit diam. Nullam eu massa eu lectus convallis blandit vel sit amet sem. Proin iaculis, dui nec laoreet consequat, augue dui tempor augue, eget iaculis dui eros sit amet diam. Vivamus auctor vulputate scelerisque. Phasellus placerat lectus dui, vel varius nisl maximus a. Etiam sollicitudin augue eu neque finibus, vitae dignissim elit aliquet. Duis tellus turpis, scelerisque eget tincidunt a, ornare sed nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce finibus nisl sed tortor viverra commodo.";
-    Paragraph *par1 = new Paragraph(paragraph1);
-    Paragraph *par2 = new Paragraph(paragraph2);
-    Paragraph *par3 = new Paragraph(paragraph3);
+    Paragraph par1(paragraph1);
+    Paragraph par2(paragraph2);
+    Paragraph par3(paragraph3);
     LetterBody *letterBody = new LetterBody();
-    letterBody->addComponent(par1);
-    letterBody->addComponent(par2);
-    letterBody->addComponent(par3);
+    letterBody->addComponent(&par1);
+    letterBody->addComponent(&par2);
+    letterBody->addComponent(&par3);
     Letter *letter = new Letter("SWPatterns", "Ege Meric Erdogan", "Tolga Ustunkok");
     letter->addComponent(letterBody);
     letter->print();
+ 
 }
