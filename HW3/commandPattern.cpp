@@ -82,16 +82,8 @@ IntegrationOperation::~IntegrationOperation()
 }
 
 void IntegrationOperation::execute()
-{
-    
-    while (true)
-    {
-        expression->updateSum(expression->getCurrentValue() + (this->nextValue * this->getDx()));
-        if(expression->getCurrentValue() >= this->nextValue){
-            break;
-        }
-      
-    }
+{ 
+    expression->updateSum(expression->getCurrentValue() + (this->nextValue * this->getDx()));    
 }
 
 class DifferentiationOperation : public Operation
@@ -156,7 +148,7 @@ int main()
     Operation *integrationOperation = new IntegrationOperation(expression, 0.1, 5);
     Operation *diffOperation = new DifferentiationOperation(expression, 0.1, 5);
     Statement *statement = new Statement();
-    //statement->appendOperation(integrationOperation);
+    statement->appendOperation(integrationOperation);
     statement->appendOperation(diffOperation);
     statement->evulate();
     cout << expression->getCurrentValue();
