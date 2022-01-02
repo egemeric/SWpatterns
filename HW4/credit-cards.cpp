@@ -25,7 +25,7 @@ string CredidCard::returnCardNoIndex(string str, int start, int end)
 {
 
     string result = "";
-    for (int i = start-1; i < end; i++)
+    for (int i = start - 1; i < end; i++)
     {
         result += str.at(i);
     }
@@ -156,9 +156,9 @@ void MasterCard::describeCard()
         break;
     }
 
-    cout<< "Possible Bank Numbers: "<< CredidCard::returnCardNoIndex(cardNo,guessBank[0],guessBank[1])<<endl;
-    cout<< "Account Number: "<<CredidCard::returnCardNoIndex(cardNo,guessBank[1],checkDigit)<<endl;
-    cout<<"Check Digit: "<< cardNo.at(checkDigit-1)<<endl;
+    cout << "Possible Bank Numbers: " << CredidCard::returnCardNoIndex(cardNo, guessBank[0], guessBank[1]) << endl;
+    cout << "Account Number: " << CredidCard::returnCardNoIndex(cardNo, guessBank[1], checkDigit) << endl;
+    cout << "Check Digit: " << cardNo.at(checkDigit - 1) << endl;
 }
 
 class Amex : public CredidCard
