@@ -18,7 +18,19 @@ public:
     virtual bool acceptCard() = 0;
     virtual void describeCard() = 0;
     string getCardType();
+    static string returnCardNoIndex(string str, int start, int end);
 };
+
+string CredidCard::returnCardNoIndex(string str, int start, int end)
+{
+
+    string result = "";
+    for (int i = start-1; i < end; i++)
+    {
+        result += str.at(i);
+    }
+    return result;
+}
 
 CredidCard::CredidCard(string CredidCardNumber)
 {
@@ -99,7 +111,9 @@ class MasterCard : public CredidCard
 private:
     /* data */
 public:
-    const string RegexStr = "^5[1-5][0-9]{14}$";
+    const int bankNoIndex[4][2] = {{2, 3}, {2, 4}, {2, 5}, {2, 6}};
+    const int checkDigit = 16;
+    const string RegexStr = "^5[1-5][0-9]{5,}|222[1-9][0-9]{3,}|22[3-9][0-9]{4,}|2[3-6][0-9]{5,}|27[01][0-9]{4,}|2720[0-9]{3,}$";
     MasterCard(string CredidCardNumber);
     ~MasterCard();
     virtual bool acceptCard();
@@ -123,6 +137,28 @@ bool MasterCard::acceptCard()
 
 void MasterCard::describeCard()
 {
+    string cardNo = this->getCardNumber();
+    int banknoDepend = int(cardNo.at(1));
+    int guessBank[2];
+    switch (banknoDepend)
+    {
+    case 1:
+        copy(begin(this->bankNoIndex[0]), end(this->bankNoIndex[0]), begin(guessBank));
+        break;
+    case 2:
+        copy(begin(this->bankNoIndex[1]), end(this->bankNoIndex[1]), begin(guessBank));
+        break;
+    case 3:
+        copy(begin(this->bankNoIndex[2]), end(this->bankNoIndex[2]), begin(guessBank));
+        break;
+    default:
+        copy(begin(this->bankNoIndex[3]), end(this->bankNoIndex[3]), begin(guessBank));
+        break;
+    }
+
+    cout<< "Possible Bank Numbers: "<< CredidCard::returnCardNoIndex(cardNo,guessBank[0],guessBank[1])<<endl;
+    cout<< "Account Number: "<<CredidCard::returnCardNoIndex(cardNo,guessBank[1],checkDigit)<<endl;
+    cout<<"Check Digit: "<< cardNo.at(checkDigit-1)<<endl;
 }
 
 class Amex : public CredidCard
