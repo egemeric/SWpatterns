@@ -8,19 +8,21 @@ private:
     string CredidCardNumber;
 
 protected:
-    string getCardNumber();
     string CardType = "";
     bool isValid = false;
 
 public:
+    string getCardNumber();
     CredidCard(string CredidCardNumber);
     ~CredidCard();
-    virtual bool acceptCard() = 0;
-    virtual void describeCard() = 0;
+    virtual bool acceptCard();
+    virtual void describeCard();
     string getCardType();
     static string returnCardNoIndex(string str, int start, int end);
 };
 
+bool CredidCard::acceptCard() { return false; }
+void CredidCard::describeCard() {}
 string CredidCard::returnCardNoIndex(string str, int start, int end)
 {
 
@@ -62,8 +64,8 @@ public:
     const string RegexStr = "^4[0-9]{12}(?:[0-9]{3})?$";
     Visa(string CredidCardNumber);
     ~Visa();
-    virtual bool acceptCard();
-    virtual void describeCard();
+    bool acceptCard();
+    void describeCard();
 };
 
 Visa::Visa(string CredidCardNumber) : CredidCard(CredidCardNumber)
@@ -116,8 +118,8 @@ public:
     const string RegexStr = "^5[1-5][0-9]{5,}|222[1-9][0-9]{3,}|22[3-9][0-9]{4,}|2[3-6][0-9]{5,}|27[01][0-9]{4,}|2720[0-9]{3,}$";
     MasterCard(string CredidCardNumber);
     ~MasterCard();
-    virtual bool acceptCard();
-    virtual void describeCard();
+    bool acceptCard();
+    void describeCard();
 };
 
 MasterCard::MasterCard(string CredidCardNumber) : CredidCard(CredidCardNumber)
@@ -173,8 +175,8 @@ public:
     const string RegexStr = "^3[47][0-9]{13}$";
     Amex(string CredidCardNumber);
     ~Amex();
-    virtual bool acceptCard();
-    virtual void describeCard();
+    bool acceptCard();
+    void describeCard();
 };
 
 Amex::Amex(string CredidCardNumber) : CredidCard(CredidCardNumber)
@@ -228,8 +230,8 @@ public:
     const string RegexStr = "^3(?:0[0-5]|[68][0-9])[0-9]{11}$";
     DinnersClub(string CredidCardNumber);
     ~DinnersClub();
-    virtual bool acceptCard();
-    virtual void describeCard();
+    bool acceptCard();
+    void describeCard();
 };
 
 DinnersClub::DinnersClub(string CredidCardNumber) : CredidCard(CredidCardNumber)
@@ -253,13 +255,13 @@ void DinnersClub::describeCard()
 
 class Context
 {
-private:
+protected:
     CredidCard *card;
 
 public:
     Context(/* args */);
     ~Context();
-    bool ValidateCard();
+    virtual bool ValidateCard();
     void SetCard(CredidCard *card); // set strategy to find card type;
 };
 Context::Context(/* args */)
@@ -288,23 +290,44 @@ void Context::SetCard(CredidCard *card)
     this->card = card;
 }
 
+class ValidationStrategy : public Context
+{
+public:
+    ValidationStrategy() : Context()
+    {
+    }
+
+    bool ValidateCard()
+    {
+        CredidCard *cardTypes[] = {new Visa(this->card->getCardNumber()),
+                                   new MasterCard(this->card->getCardNumber()),
+                                   new Amex(this->card->getCardNumber()),
+                                   new DinnersClub(this->card->getCardNumber())};
+        int arrSize = *(&cardTypes + 1) - cardTypes;
+
+        for (int i = 0; i < arrSize; i++)
+        {
+            this->card = cardTypes[i];
+            if (this->card->acceptCard())
+            {
+                cout << "Card Type:" << this->card->getCardType() << endl;
+                this->card = cardTypes[i];
+                this->card->describeCard();
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
 int main()
 {
-    Context *context = new Context();
+    ValidationStrategy *context = new ValidationStrategy();
     CredidCard *card;
     string CardNumber;
     cout << "Enter Card Number:";
     getline(cin, CardNumber);
-    CredidCard *cardTypes[] = {new Visa(CardNumber), new MasterCard(CardNumber), new Amex(CardNumber), new DinnersClub(CardNumber)};
-    int arrSize = *(&cardTypes + 1) - cardTypes;
-
-    for (int i = 0; i < arrSize; i++)
-    {
-        context->SetCard(cardTypes[i]);
-        if (context->ValidateCard())
-        {
-            card = cardTypes[i];
-            break;
-        }
-    }
+    card = new CredidCard(CardNumber);
+    context->SetCard(card);
+    context->ValidateCard();
 }
